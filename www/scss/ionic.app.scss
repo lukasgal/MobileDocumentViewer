@@ -1,0 +1,18 @@
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+.iframeWrapper {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+#docIframe {
+	width: 100%;
+	min-height: 100%!important;
+	overflow-y: hidden;
+}
+
+.scroll-content {
+    overflow-y: auto;
+}
+

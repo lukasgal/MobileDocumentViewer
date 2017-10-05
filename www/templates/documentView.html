@@ -1,0 +1,13 @@
+<ion-view cache-view="false" id="document">
+<ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="goBack()" >
+    <i class="icon ion-ios-arrow-back"></i>
+    Back</button>
+    </ion-nav-buttons>
+	 <ion-nav-title>{{document.title}}</ion-nav-title>
+	<ion-content padding="false" ng-controller="documentViewCtrl">
+		<div style="height: 91vh;">
+			<iframe ng-src="{{document.url}}" frameborder="0" id="docIframe" ng-model="docIframe" allowfullscreen="true"></iframe>
+		</div>
+	</ion-content>
+</ion-view>

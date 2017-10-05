@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    
+    
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+      .show-list-numbers-and-dots ul{
+        list-style-type: disc;
+        padding-left:40px;
+      }
+      .show-list-numbers-and-dots ol{
+        list-style-type: decimal;
+        padding-left:40px;
+      }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+		
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7"  class="platform-android">
+  <div>
+  <ion-side-menus enable-menu-with-back-views="true" data-componentid="side-menu21">
+    <ion-side-menu-content>
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" id="side-menu21">
+      <ion-header-bar class="bar-stable">
+        <div class="title">Menu</div>
+      </ion-header-bar>
+      <ion-content ng-controller="menuCtrl" padding="false" class="side-menu-left has-header " data-ng-init="input.kcenterurl='http://10.150.10.110:8080/knowledgecenter';input.userid='admin';input.password='admin'">
+        <form id="menu-form1" class="list" data-componentid="input">
+		 <label class="item item-input item-stacked-label" id="menu-input0" data-componentid="input0">
+            <span class="input-label">KCenter url</span>
+            <input type="text" placeholder="e.g. http://nb139:8080/knowldegecenter" ng-model="input.kcenterurl" name="kcenterurl" >
+          </label>
+          <label class="item item-input item-stacked-label" id="menu-input1" data-componentid="input1">
+            <span class="input-label">User id</span>
+            <input type="text" placeholder="userid" ng-model="input.userid" name="userid">
+          </label>
+		  <label class="item item-input item-stacked-label" id="menu-input2" data-componentid="inpu2">
+            <span class="input-label">Password</span>
+            <input type="password" placeholder="password" ng-model="input.password" name="password" >
+          </label>
+		  <label class="item item-input item-stacked-label" id="menu-input3" data-componentid="inpu3">
+            <span class="input-label">Domain</span>
+            <input type="text" placeholder="domain" ng-model="input.domain" name="domain">
+          </label>
+        </form>
+		<a ng-click="SignUp(input)" ng-disabled="false" class="button button-positive button-block" data-componentid="link1"  menu-close="true">Sign up!</a>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
+</div>
+  </body>
+</html>
+
