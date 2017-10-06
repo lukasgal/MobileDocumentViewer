@@ -1,26 +1,19 @@
-Ionic App Base
+Mobile document viewer
 ==============
-
-A starting project for Ionic that optionally supports using custom SCSS.
-
-## Using this project
-
-We recommend using the [Ionic CLI](https://github.com/ionic-team/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
-
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
-
-```bash
-$ npm install -g ionic cordova
+This application is used for purpose of testing a KCenter document in mobile device. 
+List of documents is loaded to the application from a location defined in the "Settings". It's required a JSON format like here:
 ```
-
-Then run:
-
-```bash
-$ ionic start myProject tabs --type=ionic1
+[
+	{
+		"id" 		: "1",
+  		"title" 	: "Test document",
+  		"url"	 	: "http://nb139.usucz.usu.grp:8080/knowledgecenter/docShowD.do?mandatorKey=MANDATOR_USU&callFromKminer=true&entity.GUID=g4c97f02-12e3-4360-9dg5-73b85b66g84g&mode=mobile"
+   },
+   	{
+		"id" 		: "2",
+  		"title" 	: "Test document 2",
+  		"url"	 	: "http://nb139.usucz.usu.grp:8080/knowledgecenter/docShowD.do?mandatorKey=MANDATOR_USU&callFromKminer=true&entity.GUID=06374b99-4d39-4625-829d-522414ef9fdc&mode=mobile"
+	}
+  
+]
 ```
-
-More info on this can be found on the Ionic [Getting Started](https://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/ionic-team/ionic-cli) repo.
-
-## Issues
-
-Issues have been disabled on this repo. If you do find an issue or have a question, consider posting it on the [Ionic Forum](https://forum.ionicframework.com/). If there is truly an error, follow our guidelines for [submitting an issue](https://ionicframework.com/submit-issue/) to the main Ionic repository.
