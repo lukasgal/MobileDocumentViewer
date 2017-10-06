@@ -1,8 +1,18 @@
 Mobile document viewer
 ==============
 This application is used for purpose of testing a KCenter document in mobile device. 
+
+Settings:
+
+![alt text](https://github.com/lukasgal/MobileDocumentViewer/blob/master/docs/img/settings.png "Settings")
+
+Documents:
+
+![alt text](https://github.com/lukasgal/MobileDocumentViewer/blob/master/docs/img/documents.png "Documents")
+
+
 List of documents is loaded to the application from a location defined in the "Settings". It's required a JSON format like here:
-```
+```javascript
 [
 	{
 		"id" 		: "1",
@@ -17,3 +27,8 @@ List of documents is loaded to the application from a location defined in the "S
   
 ]
 ```
+
+Document view:
+
+![alt text](https://github.com/lukasgal/MobileDocumentViewer/blob/master/docs/img/documentView.png "Documents")
+
