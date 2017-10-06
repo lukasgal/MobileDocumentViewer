@@ -1,11 +1,8 @@
 angular.module('app.services', [])
-.factory('DocumentService', ['$q','$http',function($q, $http){
-	var docsScope = angular.element(document.querySelector('[ng-controller=menuCtrl]')).scope();
-	var kcurl = docsScope && docsScope.input && docsScope.input.kcenterurl ? docsScope.input.kcenterurl  : "";
-	
+.factory('DocumentService', ['$q','$http','$ionicPopup',function($q, $http,$ionicPopup){
 	login = function (callback, url, user, psw, domain){
 				var invocation = new XMLHttpRequest();
-				if (!url.startsWith("http")) return;
+				if (!url || !url.startsWith("http")) return;
 			  	if(invocation) {
 					invocation.open('POST', url);
 				    invocation.withCredentials = true;	
@@ -27,19 +24,39 @@ angular.module('app.services', [])
         getDocuments:function() {
             var deferred = $q.defer();
 			var documents = [];
-			var base_url = kcurl+"/testdocuments.json";
-			login(function(res){
-				if(res.responseText!=""){
-					try{
-						var docs = JSON.parse(res.responseText);
-						documents = docs;	
-						deferred.resolve(documents);	
-					}catch(e){
-							
-					}
+			var docsScope = angular.element(document.querySelector('[ng-controller=settingsCtrl]')).scope();
+			var base_url =  docsScope && docsScope.getDocsUrl();
+			if(base_url==null ||base_url==""){
+					$ionicPopup.alert({
+              			title: 'Error',
+              			content: 'There is not defined url to KCenter documents!'
+            		})
+					return;
+			}
+			var callbackSuccess = function(res){
+				if(res.data){
+					documents = res.data;	
+					deferred.resolve(documents);	
+				}else{
+					$ionicPopup.alert({
+              			title: 'Error',
+              			content: 'No document found!'
+            		})
 				}
 					
-			}, base_url, "admin","admin");
+			};
+			
+			var errorCallback  = function (res) {
+                var errorMsg  = res.data.message +
+                    "<br />status: " + res.status;
+					$ionicPopup.alert({
+              			title: res.data.status,
+              			content: errorMsg
+            		})
+            }
+			
+			$http.get(base_url, {withCredentials : true}).then(callbackSuccess, errorCallback);
+			//login(callback, base_url, docsScope.input.userid,docsScope.input.password);
 			
             
             return deferred.promise;

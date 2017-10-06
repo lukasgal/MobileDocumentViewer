@@ -33,16 +33,36 @@ function ($scope, $sce, $stateParams, $location,$ionicHistory) {
 	
 }])
       
-.controller('menuCtrl', ['$scope','$sce', '$stateParams','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
+.controller('menuCtrl', ['$scope','$sce', '$stateParams','$http',
 function ($scope, $sce, $stateParams, $http) {
-	$scope.input = {kcenterurl : "http://nb139.usucz.usu.grp:8080/knowledgecenter/",
+	
+
+}])
+.controller('settingsCtrl', ['$scope','$sce', '$stateParams','$http','$ionicPopup',
+function ($scope, $sce, $stateParams, $http, $ionicPopup) {
+	$scope.input = {
+		kcenterurl : "http://nb139.usucz.usu.grp:8080/knowledgecenter/",
 		userid : "admin",
-		password : "admin"
-	}
-	$scope.SignUp= function (input){  
-		var url = input.kcenterurl;
+		password : "admin",
+		docsUrl : 'testDocuments.json'
+	};
+	$scope.getDocsUrl = function(){
+		var url = this.input.kcenterurl;
+		if(url.endsWith("/")){
+			url = url.substring(0,url.length-1);
+		}
+		if(this.input.docsUrl){
+			var docsUrl = this.input.docsUrl;
+						
+			if(docsUrl.indexOf("/")!=0){
+				docsUrl = "/"+docsUrl;
+			}
+			url = url+docsUrl;
+		}
+		return url;
+	};
+	$scope.testConnection= function (input){  
+		var url = $scope.getDocsUrl();
 		var invocation = new XMLHttpRequest();
 		if (!url.startsWith("http")) return;
 	  	if(invocation) {
@@ -51,9 +71,20 @@ function ($scope, $sce, $stateParams, $http) {
 		    invocation.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	
 		    invocation.onreadystatechange = function () {
+				
 		        if (invocation.readyState === 4) {
-		            console.log("logged");
+					var resultText = "";
+					if(invocation.status==200){
+						resultText = "Test passed";
+					}else {
+						resultText = "Test failed";
+					}
+		            $ionicPopup.alert({
+              			title: 'Test result',
+              			content: "<h3>"+resultText+"</h3><br><small>URL: "+invocation.responseURL+"</small><br>Status : "+invocation.status
+            		})
 		    	}
+				
 		    }
 		    invocation.send("gk_userid="+input.userid+"&gk_password="+input.password+"&gk_domain="+(input.domain || "")+"&gk_request=true&action=login");
 		
@@ -61,8 +92,7 @@ function ($scope, $sce, $stateParams, $http) {
 	}
 
 
-}])
-   
+}]) 
 .controller('documentsCtrl', ['$scope', 'DocumentService', 
 function ($scope, DocumentService) {
 	$scope.documents = [];
@@ -80,14 +110,5 @@ function ($scope, DocumentService) {
 			$scope.documents = res;
 		});	
 	}
-	$scope.loadDocuments();
 }])
    
-.controller('winkoCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
- 

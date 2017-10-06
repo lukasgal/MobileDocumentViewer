@@ -1,14 +1,8 @@
 <ion-view title="Documents" id="documents">
-<button class="button button-clear" ng-click="myGoBack()" >
-    <i class="icon ion-ios-arrow-back"></i>
-    Back</button>
-    </ion-nav-buttons>
- <ion-view title="Documents">
     <ion-content overflow-scroll="false" padding="true" class="has-header" ng-controller="documentsCtrl">
 		<a ng-click="loadDocuments()" ng-disabled="false" class="button button-positive button-block" data-componentid="link1">Load documents</a>
         <ion-list>
             <ion-item ng-repeat="document in documents" ui-sref="documentView({id:document.id})">{{document.title}}</ion-item>
         </ion-list>
     </ion-content>
-</ion-view>
 </ion-view>

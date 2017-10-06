@@ -9,12 +9,12 @@ angular.module('app.routes', [])
   $stateProvider
     
 
-      .state('tabsController.pivko', {
-    url: '/page3',
+      .state('tabsController.settings', {
+    url: '/settings',
     views: {
-      'tab3': {
-        templateUrl: 'templates/pivko.html',
-        controller: 'pivkoCtrl'
+      'tab1': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
       }
     }
   })
@@ -28,20 +28,10 @@ angular.module('app.routes', [])
   .state('tabsController.documents', {
     url: '/documents',
     views: {
-      'tab1': {
+      'tab2': {
 		cache: false,
         templateUrl: 'templates/documents.html',
         controller: 'documentsCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.winko', {
-    url: '/page2',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/winko.html',
-        controller: 'winkoCtrl'
       }
     }
   })
@@ -53,7 +43,7 @@ angular.module('app.routes', [])
     })
 
 
-$urlRouterProvider.otherwise('/documents/documents')
+$urlRouterProvider.otherwise('/documents/settings')
 
 
 });
