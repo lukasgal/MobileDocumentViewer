@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','ngCookies'])
 
 
 
@@ -17,6 +17,9 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 })
 .config(['$stateProvider', function($stateProvider){
     $stateProviderRef = $stateProvider;
+  }])
+.config(['$urlRouterProvider', function($urlRouterProvider){
+    $urlRouterProviderRef = $urlRouterProvider;
   }])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

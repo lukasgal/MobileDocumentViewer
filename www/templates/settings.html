@@ -4,25 +4,25 @@
         <form id="menu-form1" class="list" data-componentid="input">
 		 <label class="item item-input item-stacked-label" id="menu-input0" data-componentid="input0" >
             <span class="input-label" style='color: silver!important;'>KCenter url</span>
-            <input type="text" placeholder="e.g. http://nb139:8080/knowldegecenter" ng-model="input.kcenterurl" name="kcenterurl" >
+            <input type="text" placeholder="e.g. http://nb139:8080/knowldegecenter" ng-model="input.kcenterurl" name="kcenterurl" ng-blur="storeValue('input.kcenterurl')">
           </label>
 		  <label class="item item-input item-stacked-label" id="menu-input3" data-componentid="input4">
-            <span class="input-label" style='color: silver!important;'>Relative url to list of documents</span>
-            <input type="text" placeholder="Add relative url to list of documents" ng-model="input.docsUrl" name="docsUrl">
+            <span class="input-label" style='color: silver!important;'>Path to list of documents</span>
+            <input type="text" placeholder="Add path to list of documents" ng-model="input.docsUrl" name="docsUrl" ng-blur="storeValue('input.docsUrl')">
           </label>
           <label class="item item-input item-stacked-label" id="menu-input1" data-componentid="input1">
-            <span class="input-label" style='color: silver!important;'>User id</span>
-            <input type="text" placeholder="userid" ng-model="input.userid" name="userid">
+            <span class="input-label" style='color: silver!important;'>User id</span>	
+            <input type="text" placeholder="userid" ng-model="input.userid" name="userid"  ng-blur="storeValue('input.userid')">
           </label>
 		  <label class="item item-input item-stacked-label" id="menu-input2" data-componentid="inpu2">
             <span class="input-label" style='color: silver!important;'>Password</span>
-            <input type="password" placeholder="password" ng-model="input.password" name="password" >
+            <input type="password" placeholder="password" ng-model="input.password" name="password"  ng-blur="storeValue('input.password')">
           </label>
 		  <label class="item item-input item-stacked-label" id="menu-input3" data-componentid="inpu3">
             <span class="input-label" style='color: silver!important;'>Domain</span>
-            <input type="text" placeholder="domain" ng-model="input.domain" name="domain">
+            <input type="text" placeholder="domain" ng-model="input.domain" name="domain"  ng-blur="storeValue('input.domain')">
           </label>
         </form>
-		<a ng-click="testConnection(input)" ng-disabled="!input.kcenterurl || !input.docsUrl || !input.userid || !input.password" class="button button-positive button-block" data-componentid="link1"  menu-close="true">Test connection</a>
+		<a ng-click="testConnection(input)" ng-disabled="!input.kcenterurl || !input.docsUrl || !input.userid || !input.password" class="button button-positive button-block" data-componentid="link1"  menu-close="true">Connect</a>
 	</ion-content>
 </ion-view>

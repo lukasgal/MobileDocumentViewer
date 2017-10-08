@@ -2,7 +2,7 @@
     <ion-content overflow-scroll="false" padding="true" class="has-header" ng-controller="documentsCtrl">
 		<a ng-click="loadDocuments()" ng-disabled="false" class="button button-positive button-block" data-componentid="link1">Load documents</a>
         <ion-list>
-            <ion-item ng-repeat="document in documents" ui-sref="documentView({id:document.id})">{{document.title}}</ion-item>
+            <ion-item ng-repeat="document in documents" ng-click="openDocument(document.url)">{{document.title}}</ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

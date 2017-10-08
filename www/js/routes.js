@@ -37,7 +37,7 @@ angular.module('app.routes', [])
   })
   
   .state('documentView', {
-      url: '/document/:id',
+      url: '/document/:url',
       templateUrl: 'templates/documentView.html',
       controller: 'documentViewCtrl'
     })

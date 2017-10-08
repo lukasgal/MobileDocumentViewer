@@ -9,6 +9,7 @@
         "gulp-sass": "^3.1.0"
     },
     "dependencies": {
+        "angular-cookies": "^1.5.3",
         "cordova-android": "^6.2.3",
         "cordova-plugin-crosswalk-webview": "^2.3.0",
         "cordova-plugin-device": "^1.1.4",
