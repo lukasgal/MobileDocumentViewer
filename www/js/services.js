@@ -47,8 +47,8 @@ angular.module('app.services', [])
 
 }])
 
-.factory('SingletonDocument',['$window', '$location', '$rootScope', '$log','$stateParams','$state','$ionicLoading',
-	function SingletonDocument($window, $location, $rootScope, $log,$stateParams,$state,$ionicLoading) {
+.factory('SingletonDocument',['$window', '$location', '$rootScope', '$log','$stateParams','$state','$ionicLoading','$http','$ionicPopup',
+	function SingletonDocument($window, $location, $rootScope, $log,$stateParams,$state,$ionicLoading, $http,$ionicPopup) {
 		return {
 			isInProgress : false,
 				
@@ -68,6 +68,41 @@ angular.module('app.services', [])
 					this.isInProgress = false;
 				}
 				
+			},
+			downloadFile : function(url, mimeType,fileName){
+				if(!url) return;
+				var properties = {type: mimeType};
+				
+				$http.get(url,{withCredentials : true, responseType: "blob"}).then(
+			    	function(res){
+						if(res.status!=200) return;
+						
+						var downloadUrl = window.URL.createObjectURL(res.data);
+						
+						var popup = $ionicPopup.show({
+							closePopup : function(){
+								popup.close();
+							},
+							
+	              			title: 'Download',
+	              			content: '<a href="'+downloadUrl+'" target="_blank" download="'+fileName+'" class="button button-positive button-block">Download file</a>',
+							buttons: [{
+				            text: 'Close',
+				            type: 'button-positive',
+				            onTap: function (e) {
+									popup.close();
+				            	}
+        					}]
+            			});
+						
+			       }, 
+			       function(res){
+			         $ionicPopup.alert({
+              			title: 'Error',
+              			content: 'Can\'t download the file!'
+            		})
+			       }
+    );
 			}
 			
 		};
@@ -109,6 +144,9 @@ angular.module('app.services', [])
 						break;
 						case "progressEnd":
 							SingletonDocument.hideProgress();
+						break;
+						case  "openAttachment":
+							SingletonDocument.downloadFile(data.url, data.mimeType, data.fileName);
 						break;
 
 					}

@@ -51,11 +51,11 @@ function ($scope, $sce, $stateParams, $http) {
 	
 
 }])
-.controller('settingsCtrl', ['$scope','$sce', '$stateParams','$http','$ionicPopup','$cookieStore',
-function ($scope, $sce, $stateParams, $http, $ionicPopup,$cookieStore) {
+.controller('settingsCtrl', ['$scope','$sce', '$stateParams','$http','$ionicPopup',
+function ($scope, $sce, $stateParams, $http, $ionicPopup) {
 	
 	$scope.getValue = function(key){
-		return $cookieStore.get(key);	
+		return null;	
 	}
 	
 	$scope.input = {
@@ -94,7 +94,7 @@ function ($scope, $sce, $stateParams, $http, $ionicPopup,$cookieStore) {
 		if(key){
 			var keyName = key.substring(key.indexOf(".")+1,key.length);
 			var value = this.input[keyName];
-			$cookieStore.put(key, value);	
+			
 		}
 	}
 	
